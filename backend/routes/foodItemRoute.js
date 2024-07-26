@@ -2,7 +2,6 @@ import express from 'express'
 import authMiddleware from '../middleware/auth.js';
 import { addFoodItem,updateFoodItem,getFoodItemsByHotel,getFoodByFoodId } from '../controllers/foodItemController.js'
 
-
 const foodRouter = express.Router();
 
 foodRouter.get("/:hotelId/items",getFoodItemsByHotel);
