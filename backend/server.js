@@ -15,8 +15,8 @@ import path from "path";
 // db connection
 connectDB();
 
-// const _filename = fileURLToPath(import.meta.url);
-// const _dirname = path.dirname(_filename);
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = path.dirname(_filename);
 
 // app config
 const app = express();
@@ -31,7 +31,7 @@ app.use(cors())
 //     useTempFiles:true
 // }))
 
-app.use(express.static(path.join(__dirname, "../../../frontend/dist")));
+app.use(express.static(path.join(_dirname, "../../../frontend/dist")));
 
 // api endpoint
 app.use("/api/user",userRouter)
