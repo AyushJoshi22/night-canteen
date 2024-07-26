@@ -45,7 +45,7 @@ app.use("/api/order",orderRouter)
 // })
 
 app.get("*", (req,res) => {
-    res.sendFile(path.join(__dirname, "../../../frontend/dist/index.html"));
+    res.sendFile(path.join(_dirname, "../../../frontend/dist/index.html"));
 });
 
 // app.use('*',function(req,res){
