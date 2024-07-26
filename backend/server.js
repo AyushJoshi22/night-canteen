@@ -15,8 +15,8 @@ import path from "path";
 // db connection
 connectDB();
 
-const _filename = fileURLToPath(import.meta.url);
-const _dirname = path.dirname(_filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // app config
 const app = express();
@@ -31,7 +31,7 @@ app.use(cors())
 //     useTempFiles:true
 // }))
 
-app.use(express.static(path.join(_dirname, "../../../frontend/dist")));
+app.use(express.static(path.join(__dirname, "../../../frontend/dist")));
 
 // api endpoint
 app.use("/api/user",userRouter)
@@ -45,7 +45,7 @@ app.use("/api/order",orderRouter)
 // })
 
 app.get("*", (req,res) => {
-    res.sendFile(path.join(_dirname, "../../../frontend/dist/index.html"));
+    res.sendFile(path.join(__dirname, "../../../frontend/dist/index.html"));
 });
 
 // app.use('*',function(req,res){
