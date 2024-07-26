@@ -44,13 +44,13 @@ app.use("/api/order",orderRouter)
 //     res.send("API working")
 // })
 
-// app.get("*", (req,res) => {
-//     res.sendFile(path.join(__dirname, "../../../frontend/dist/index.html"));
-// });
+app.get("*", (req,res) => {
+    res.sendFile(path.join(__dirname, "../../../frontend/dist/index.html"));
+});
 
-app.use('*',function(req,res){
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
-  });
+// app.use('*',function(req,res){
+//     res.sendFile(path.join(__dirname, "./frontend/build/index.html"));
+//   });
 
 app.listen(port,()=>{
     console.log(`Server started on http://localhost:${port}`)
