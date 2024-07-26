@@ -8,8 +8,15 @@ import userRouter from './routes/userRoute.js';
 import hotelRouter from './routes/hotelOwnerRoute.js';
 import foodRouter from './routes/foodItemRoute.js';
 import orderRouter from './routes/orderRoute.js';
+import { fileURLToPath } from "url";
 
+import path from "path";
 
+// db connection
+connectDB();
+
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = path.dirname(_filename);
 
 // app config
 const app = express();
@@ -24,9 +31,7 @@ app.use(cors())
 //     useTempFiles:true
 // }))
 
-// db connection
-connectDB();
-
+app.use(express.static(path.join(_dirname, "../../../frontend/dist")));
 
 // api endpoint
 app.use("/api/user",userRouter)
@@ -35,10 +40,23 @@ app.use("/api/hotel",foodRouter)
 app.use("/api/order",orderRouter)
 
 
-app.get("/",(req,res)=>{
-    res.send("API working")
-})
+// app.get("/",(req,res)=>{
+//     res.send("API working")
+// })
+
+// app.get("*", (req,res) => {
+//     res.sendFile(path.join(__dirname, "../../../frontend/dist/index.html"));
+// });
+
+app.use('*',function(req,res){
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
 
 app.listen(port,()=>{
     console.log(`Server started on http://localhost:${port}`)
 })
+
+// "scripts": {
+    // "start": "nodemon server.js",
+    // "server": "nodemon server.js"
+//   },
